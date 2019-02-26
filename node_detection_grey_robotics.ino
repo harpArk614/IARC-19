@@ -14,7 +14,13 @@ void loop ()
   sensorvalues[5] = analogRead(A5);
    if(central_black==1||white_space==1)
    {
-    if (sensorValues[1]>500 && sensorValues[4]>500 && sensorValues[3]<300 && sensorValues[2]<300) //line before any node
+    if ( (ir [0] <300 && ir [1] >500 && ir [2] <300 && ir [3] <300 && ir [4] >500 && ir [5] <300) ||
+         (ir [0] >500 && ir [1] >500 && ir [2] <300 && ir [3] <300 && ir [4] >500 && ir [5] >500) ||
+         (ir [0] >500 && ir [1] >500 && ir [2] <300 && ir [3] <300 && ir [4] >500 && ir [5] <300) ||
+         (ir [0] <300 && ir [1] >500 && ir [2] <300 && ir [3] <300 && ir [4] >500 && ir [5] >500) ||
+         (ir [0] >500 && ir [1] >500 && ir [2] <300 && ir [3] >500 && ir [4] >500 && ir [5] <300) ||
+         (ir [0] <300 && ir [1] >500 && ir [2] >500 && ir [3] <300 && ir [4] >500 && ir [5] >500) )
+                                                                                                               //line before any node
       {
         nodal_line =!nodal_line;
         central_black=0;
@@ -23,7 +29,10 @@ void loop ()
       }
    }
     
-  if (sensorValues[3]>500 && sensorValues[2]>500) // central black line
+  if ( (ir [0] <300 && ir [1] <300 && ir [2] >500 && ir [3] >500 && ir [4] <300 && ir [5] <300) || 
+       (ir [0] <300 && ir [1] <300 && ir [2] >500 && ir [3] <300 && ir [4] <300 && ir [5] <300) || 
+       (ir [0] <300 && ir [1] <300 && ir [2] <300 && ir [3] >500 && ir [4] <300 && ir [5] <300) )
+                                                                                                                // central black line
     {
      central_black=1;
     }
